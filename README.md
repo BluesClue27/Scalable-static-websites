@@ -19,6 +19,7 @@ This project hosts a static website (HTML,CSS,JS) on an **Auto Scaling Group (AS
 - HTML, CSS, Javascript
 
 ## Architecture Diagram
+Below is a high-level architecture diagram of the setup
 
 <p align="center">
    <img src="/images/V1_StaticWebsiteHosting.png" height=400 >
@@ -34,9 +35,9 @@ The IGW ensures that incoming and outgoing traffic can be routed to instances in
 
 ### 3. Application Load Balancer (ALB)
 The request is then forwarded to an **Application Load Balancer**, which distributes traffic across multiple **EC2 instances** within the **Auto Scaling Group (ASG)**.
-This improves availability and fault tolerenace by ensuring requests are handled by healthy instances across different **Avilability Zones (AZs)**.
+This improves availability and fault tolerance by ensuring requests are handled by healthy instances across different **Availability Zones (AZs)**.
 
-Each **EC2 instance** the **ASG** is hosted in a **Pulic Subnet** and can serve static website files (HTML, CSS, JS).
+Each **EC2 instance** in the **ASG** is hosted in a **Public Subnet**, allowing it to serve static website files (HTML, CSS, JS).
 
 ## Setup & Deployment Steps
 ### 1. Create VPC & Networking
@@ -53,10 +54,10 @@ Each **EC2 instance** the **ASG** is hosted in a **Pulic Subnet** and can serve 
 
 ### 4. Create Internet Gateway
 - The Internet Gateway serves as the gateway that connects your VPC to the wider internet; it acts as an access point
-- Enable public IP Configuration for Subnet to allow your instances to have public IP addresses
+- Enable public IP allocation for subnets so that EC2 instances receive a public IP and can be accessed from the internet.
 
 ### 5. Create a Security Group
-- EC2 Security Group: Allow HTTP(80) and SSH(22)
+- EC2 Security Group: Allow HTTP(80) from anywhere and SSH(22) only from trusted IPs 
 - ALB Security Group: Allow HTTP(80) from the Internet
 
 ### 6. Create an Application Load Balancer
@@ -70,7 +71,7 @@ Each **EC2 instance** the **ASG** is hosted in a **Pulic Subnet** and can serve 
 ### 8. Create an Auto Scaling Group
 - Include the launch template created
 - Include the newly created VPC and AZs
-- Attach to an existing load balancers
+- Attach to an existing load balancer and configure health checks to ensure instances are replaced if they fail
 - Set minimum and maximum desired capacity for your ASG
 
 ## Why Build This?
@@ -78,6 +79,12 @@ Each **EC2 instance** the **ASG** is hosted in a **Pulic Subnet** and can serve 
 This project was created as a learning exercise to:
 
 1. Explore **AWS services** like VPC, Subnet, Internet Gateway, Route Tables, Application Load Balancers, Auto Scaling Groups, EC2, Security Groups.
-2. Expore tther software like Apache Web Servers, Bash Scripts, HTML, CSS, Javascript. 
+2. Explore other software like Apache Web Servers, Bash Scripts, HTML, CSS, Javascript. 
 3. Understand how to implement secure, scalable, and cost-effective solutions for website hosting on the cloud.
----
+
+## Deployment Verification
+- Visit the Load Balancer's DNS name in a browser to confirm the websites are accessible
+- SSH into an instance and check if Apache is running 
+```bash
+sudo systemctl status httpd
+```
