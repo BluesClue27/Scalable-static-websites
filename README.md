@@ -22,7 +22,7 @@ This project hosts a static website (HTML,CSS,JS) on an **Auto Scaling Group (AS
 Below is a high-level architecture diagram of the setup
 
 <p align="center">
-   <img src="/images/V1_StaticWebsiteHosting.png" height=400 >
+   <img src="/images/V1_StaticWebsiteHosting.png" height=600 >
 <p>
 
 ### 1. Client Request (User Accessing Website)
