@@ -6,15 +6,23 @@ This project focuses on designing a simple Virtual Private Cloud (VPC) architect
 
 ## Technologies Used
 - Virtual Private Cloud (VPC)  
-Provides an isolated network environment within AWS to ensure secure and controlled communication between AWS resources, acting as the foundation for cloud infrastructure
-- Subnets:
-- Internet Gateway
-- Route Table
-- Application Load Balancer (ALB)
-- Auto Scaling Group (ASG)
-- Security Groups
-- Elastic Compute Cloud (EC2)
-- Launch Templates and User Data Scripts
+Provides an isolated network environment within AWS to ensure secure and controlled communication between AWS resources, acting as the foundation for cloud infrastructure.
+- Subnets  
+Provides logical subdivisions of the VPC, allowing us to group resources in different availability zones (AZ). This helps distribute resources across multiple AZs for high availability and fault tolerance.
+- Internet Gateway  
+Provides internet access for instances in public subnets within the VPC. This is essential for serving website traffic from public-facing EC2 instances.
+- Route Table  
+Defines rules for directing network traffic between subnets and external networks.
+- Application Load Balancer (ALB)  
+Distribute incoming traffic across multiple EC2 instances dynamically. This improves scalability and availability, ensuring efficient load distribution and fault tolerance.
+- Auto Scaling Group (ASG)  
+Automatically adjusts the number of EC2 instances based on demand. This helps maintain performance while optimizing costs by scaling up and down during traffic spikes and low demand respectively.
+- Security Groups  
+Acts as a virtual firewall controlling inbound and outbound traffic for EC2 instances - enhancing security by restricting access to only necessary ports and sources.
+- Elastic Compute Cloud (EC2)  
+Provides resizable compute capacity in the cloud to run the web servers and host our websites.
+- Launch Templates and User Data Scripts  
+Automates the creation and configuration of EC2 instances with predefined settings. This ensures consistency in instance setup.
 
 ## Software
 - Apache (Web Server)
@@ -43,7 +51,7 @@ Each **EC2 instance** in the **ASG** is hosted in a **Public Subnet**, allowing 
 ## Setup & Deployment Steps
 ### 1. Create VPC & Networking
 - Create a VPC and establish IP Address Range Pool (i.e. boundaries)
-- Be sure to click 'Default' Tenancy as this is the most cost-efficient option as you are sharing the costs of the underlying hardware with other AWS customers. 
+- Be sure to click 'Default' Tenancy as this is the most cost-efficient option as you are sharing the costs of the underlying hardware with other AWS customers
 - Enable DNS Hostname Resolution for VPC
 
 ### 2. Subdivide IP Range into Subnets
@@ -55,7 +63,7 @@ Each **EC2 instance** in the **ASG** is hosted in a **Public Subnet**, allowing 
 
 ### 4. Create Internet Gateway
 - The Internet Gateway serves as the gateway that connects your VPC to the wider internet; it acts as an access point
-- Enable public IP allocation for subnets so that EC2 instances receive a public IP and can be accessed from the internet.
+- Enable public IP allocation for subnets so that EC2 instances receive a public IP and can be accessed from the internet
 
 ### 5. Create a Security Group
 - EC2 Security Group: Allow HTTP(80) from anywhere and SSH(22) only from trusted IPs 
@@ -74,14 +82,6 @@ Each **EC2 instance** in the **ASG** is hosted in a **Public Subnet**, allowing 
 - Include the newly created VPC and AZs
 - Attach to an existing load balancer and configure health checks to ensure instances are replaced if they fail
 - Set minimum and maximum desired capacity for your ASG
-
-## Why Build This?
-
-This project was created as a learning exercise to:
-
-1. Explore **AWS services** like VPC, Subnet, Internet Gateway, Route Tables, Application Load Balancers, Auto Scaling Groups, EC2, Security Groups.
-2. Explore other software like Apache Web Servers, Bash Scripts, HTML, CSS, Javascript. 
-3. Understand how to implement secure, scalable, and cost-effective solutions for website hosting on the cloud.
 
 ## Deployment Verification
 - Visit the Load Balancer's DNS name in a browser to confirm the websites are accessible
