@@ -2,9 +2,12 @@
 
 This project hosts a static website (HTML,CSS,JS) on an **Auto Scaling Group (ASG)** of **EC2 instances** behind an **Application Load Balancer (ALB)** in AWS. The website is automatically deployed using **Launch Templates** and **User Data Scripts**.
 
+This project focuses on designing a simple Virtual Private Cloud (VPC) architecture using multiple AWS services, while also integrating technologies such as Apache Web Servers, Bash scripts, and front-end development with HTML, CSS, and JavaScript. The goal is to implement a secure, scalable, and cost-effective cloud-based solution for static website hosting. 
+
 ## Technologies Used
 - Virtual Private Cloud (VPC)
-- Subnets
+Provides an isolated network environment within AWS to ensure secure and controlled communication between AWS resources, acting as the foundation for cloud infrastructure
+- Subnets:
 - Internet Gateway
 - Route Table
 - Application Load Balancer (ALB)
@@ -21,9 +24,7 @@ This project hosts a static website (HTML,CSS,JS) on an **Auto Scaling Group (AS
 ## Architecture Diagram
 Below is a high-level architecture diagram of the setup
 
-<p align="center">
-   <img src="/images/V1_StaticWebsiteHosting.png" height=600 >
-<p>
+![Architecture Diagram](/images/V1_StaticWebsiteHosting.png)
 
 ### 1. Client Request (User Accessing Website)
 The user (client) accesses the website using a browser and enters the DNS name of the application. 
