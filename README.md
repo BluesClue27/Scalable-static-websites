@@ -5,7 +5,7 @@ This project hosts a static website (HTML,CSS,JS) on an **Auto Scaling Group (AS
 This project focuses on designing a simple Virtual Private Cloud (VPC) architecture using multiple AWS services, while also integrating technologies such as Apache Web Servers, Bash scripts, and front-end development with HTML, CSS, and JavaScript. The goal is to implement a secure, scalable, and cost-effective cloud-based solution for static website hosting. 
 
 ## Technologies Used
-- Virtual Private Cloud (VPC)
+- Virtual Private Cloud (VPC)  
 Provides an isolated network environment within AWS to ensure secure and controlled communication between AWS resources, acting as the foundation for cloud infrastructure
 - Subnets:
 - Internet Gateway
